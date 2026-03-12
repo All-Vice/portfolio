@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const posts = [
+  {
+    title: 'The Complete Guide to Bento Grid Layouts in 2026',
+    excerpt: 'Learn how to create stunning bento grid layouts using modern CSS Grid techniques.',
+    date: '2026-03-11',
+    category: 'Design',
+    slug: 'bento-grid-guide',
+  },
+  {
+    title: 'Building a Design System from Scratch',
+    excerpt: 'A comprehensive guide to creating scalable design systems for your projects.',
+    date: '2026-03-01',
+    category: 'Design Systems',
+    slug: 'design-system-guide',
+  },
+  {
+    title: 'Modern Color Theory for Developers',
+    excerpt: 'Understanding color theory and creating beautiful palettes for web projects.',
+    date: '2026-02-15',
+    category: 'Color',
+    slug: 'color-theory',
+  },
+];
+---
+
+<BaseLayout title="Blog | All-Vice">
+  <Navigation />
+  
+  <main class="pt-24">
+    <section class="container py-12">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Blog</h1>
+      <p class="text-xl text-text-secondary max-w-2xl mb-12">
+        Thoughts on web design, development, and creating great user experiences.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map(post => (
+          <article class="card group cursor-pointer">
+            <div class="text-sm text-accent mb-2">{post.category}</div>
+            <h2 class="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
+              {post.title}
+            </h2>
+            <p class="text-text-secondary text-sm mb-4">{post.excerpt}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-text-secondary">{post.date}</span>
+              <span class="text-accent text-sm group-hover:underline">Read more →</span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Coming Soon -->
+      <div class="mt-12 card bg-surface-alt text-center py-12">
+        <span class="text-4xl mb-4 block">📝</span>
+        <h2 class="text-xl font-semibold mb-2">More Articles Coming Soon</h2>
+        <p class="text-text-secondary">
+          I'm working on in-depth tutorials and guides about web design. Check back soon!
+        </p>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="container py-12">
+      <div class="card bg-gradient-to-br from-accent/10 to-accent-tertiary/10 border-accent/20">
+        <div class="text-center">
+          <h2 class="text-2xl font-heading font-bold mb-4">Stay Updated</h2>
+          <p class="text-text-secondary mb-6 max-w-md mx-auto">
+            Subscribe to get notified when I publish new articles about web design and development.
+          </p>
+          <form class="flex gap-2 max-w-md mx-auto">
+            <input 
+              type="email" 
+              placeholder="your@email.com" 
+              class="flex-1 px-4 py-3 rounded-lg border border-border bg-background focus:border-accent focus:outline-none"
+            />
+            <button type="submit" class="btn btn-primary">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

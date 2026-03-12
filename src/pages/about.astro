@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const timeline = [
+  { year: '2024', title: 'Present', description: 'Freelance Web Designer & Developer' },
+  { year: '2022', title: 'Senior Designer', description: 'Building design systems and web applications' },
+  { year: '2020', title: 'Junior Developer', description: 'Started professional web development journey' },
+  { year: '2019', title: 'First Website', description: 'Built first website - a portfolio for a friend' },
+];
+---
+
+<BaseLayout title="About | All-Vice">
+  <Navigation />
+  
+  <main class="pt-24">
+    <section class="container py-12">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-8">About Me</h1>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <div class="aspect-square max-w-md rounded-2xl bg-gradient-to-br from-accent/20 to-accent-tertiary/20 flex items-center justify-center mb-8">
+            <span class="text-8xl">👨‍💻</span>
+          </div>
+        </div>
+        
+        <div>
+          <h2 class="text-2xl font-heading font-semibold mb-4">My Story</h2>
+          <div class="space-y-4 text-text-secondary">
+            <p>
+              I'm a passionate web designer and developer with over 5 years of experience 
+              creating beautiful, functional websites. I specialize in modern design systems, 
+              user experience, and clean code.
+            </p>
+            <p>
+              My journey started when I built my first website for a friend's small business. 
+              I was hooked on the idea that good design could help businesses succeed.
+            </p>
+            <p>
+              Since then, I've worked with clients across various industries, from startups 
+              to established businesses, helping them establish their online presence.
+            </p>
+            <p>
+              When I'm not designing or coding, you'll find me exploring new web technologies, 
+              contributing to open source, or sharing knowledge through blog posts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container py-12">
+      <h2 class="text-2xl font-heading font-semibold mb-8">My Journey</h2>
+      <div class="space-y-8">
+        {timeline.map(item => (
+          <div class="flex gap-6">
+            <div class="w-24 flex-shrink-0">
+              <span class="text-accent font-mono font-semibold">{item.year}</span>
+            </div>
+            <div class="flex-1 pb-8 border-l-2 border-border pl-6">
+              <h3 class="font-semibold text-lg">{item.title}</h3>
+              <p class="text-text-secondary">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="container py-12">
+      <h2 class="text-2xl font-heading font-semibold mb-8">What I Believe</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card">
+          <div class="text-3xl mb-4">🎯</div>
+          <h3 class="font-semibold mb-2">Quality First</h3>
+          <p class="text-text-secondary text-sm">
+            Every pixel matters. I obsess over details to deliver the best possible experience.
+          </p>
+        </div>
+        <div class="card">
+          <div class="text-3xl mb-4">🚀</div>
+          <h3 class="font-semibold mb-2">Performance</h3>
+          <p class="text-text-secondary text-sm">
+            Fast websites delight users. Performance is not an afterthought, it's built in.
+          </p>
+        </div>
+        <div class="card">
+          <div class="text-3xl mb-4">💡</div>
+          <h3 class="font-semibold mb-2">Simplicity</h3>
+          <p class="text-text-secondary text-sm">
+            Great design is as little design as possible. Less is more.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

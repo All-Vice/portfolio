@@ -1,0 +1,89 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 glass">
+  <div class="container">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-heading font-bold gradient-text">
+        All-Vice
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a 
+            href={link.href}
+            class="text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button 
+          id="theme-toggle" 
+          class="p-2 rounded-lg hover:bg-surface-alt transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <button 
+          id="mobile-menu-toggle"
+          class="md:hidden p-2"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden glass border-t border-border">
+    <div class="container py-4 flex flex-col gap-4">
+      {navLinks.map(link => (
+        <a 
+          href={link.href}
+          class="text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  // Check for saved theme preference or default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+  
+  themeToggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

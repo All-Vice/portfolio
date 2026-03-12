@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: 'Omni-Server Frame',
+    description: 'AI-powered GitHub development platform with Kilo integration',
+    tags: ['Node.js', 'TypeScript', 'WebSocket', 'SQLite'],
+    link: 'https://github.com/All-Vice/Omni-Server-Frame',
+    featured: true,
+  },
+  {
+    title: 'Portfolio Website',
+    description: 'Modern bento grid portfolio with dark mode',
+    tags: ['Astro', 'Tailwind', 'TypeScript'],
+    link: '#',
+    featured: true,
+  },
+  {
+    title: 'E-commerce Platform',
+    description: 'Full-featured online store with payment integration',
+    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+    link: '#',
+    featured: false,
+  },
+  {
+    title: 'Dashboard UI',
+    description: 'Analytics dashboard with real-time data visualization',
+    tags: ['React', 'D3.js', 'TypeScript'],
+    link: '#',
+    featured: false,
+  },
+  {
+    title: 'Blog Platform',
+    description: 'MDX-powered technical blog with syntax highlighting',
+    tags: ['Astro', 'MDX', 'Tailwind'],
+    link: '#',
+    featured: false,
+  },
+  {
+    title: 'Design System',
+    description: 'Component library with documentation site',
+    tags: ['React', 'Storybook', 'Tailwind'],
+    link: '#',
+    featured: false,
+  },
+];
+---
+
+<BaseLayout title="Portfolio | All-Vice">
+  <Navigation />
+  
+  <main class="pt-24">
+    <section class="container py-12">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Portfolio</h1>
+      <p class="text-xl text-text-secondary max-w-2xl mb-12">
+        A collection of projects showcasing my work in web design and development.
+      </p>
+
+      <!-- Featured Projects -->
+      <h2 class="text-2xl font-heading font-semibold mb-6">Featured Projects</h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        {projects.filter(p => p.featured).map(project => (
+          <a href={project.link} class="card group block" target="_blank" rel="noopener">
+            <div class="aspect-video rounded-lg bg-gradient-to-br from-accent/20 to-accent-tertiary/20 mb-4 flex items-center justify-center">
+              <span class="text-5xl">🚀</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-text-secondary mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Other Projects -->
+      <h2 class="text-2xl font-heading font-semibold mb-6">Other Projects</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {projects.filter(p => !p.featured).map(project => (
+          <a href={project.link} class="card group block" target="_blank" rel="noopener">
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-sm text-text-secondary mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span class="tag text-xs">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- GitHub Stats -->
+    <section class="container py-12">
+      <div class="card">
+        <h2 class="text-2xl font-heading font-semibold mb-6">GitHub Activity</h2>
+        <div class="flex gap-4 items-center">
+          <img 
+            src="https://github-readme-stats.vercel.app/api?username=All-Vice&show_icons=true&theme=transparent" 
+            alt="GitHub Stats"
+            class="rounded-lg"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
