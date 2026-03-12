@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { Github, ExternalLink, Zap, FolderOpen } from 'lucide-astro';
 
 const projects = [
   {
@@ -53,62 +54,87 @@ const projects = [
   <Navigation />
   
   <main class="pt-24">
-    <section class="container py-12">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Portfolio</h1>
-      <p class="text-xl text-text-secondary max-w-2xl mb-12">
-        A collection of projects showcasing my work in web design and development.
-      </p>
+    <section class="section-py">
+      <div class="container-main">
+        <h1 class="hero-title mb-4 animate-on-scroll">
+          Portfolio
+        </h1>
+        <p class="text-xl text-text-secondary max-w-2xl mb-12 animate-on-scroll stagger-2" style="line-height: 1.7;">
+          A collection of projects showcasing my work in web design and development.
+        </p>
 
-      <!-- Featured Projects -->
-      <h2 class="text-2xl font-heading font-semibold mb-6">Featured Projects</h2>
-      <div class="grid md:grid-cols-2 gap-6 mb-12">
-        {projects.filter(p => p.featured).map(project => (
-          <a href={project.link} class="card group block" target="_blank" rel="noopener">
-            <div class="aspect-video rounded-lg bg-gradient-to-br from-accent/20 to-accent-tertiary/20 mb-4 flex items-center justify-center">
-              <span class="text-5xl">🚀</span>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
-              {project.title}
-            </h3>
-            <p class="text-text-secondary mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          </a>
-        ))}
-      </div>
+        <!-- Featured Projects -->
+        <h2 class="text-2xl font-bold mb-6 animate-on-scroll">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          {projects.filter(p => p.featured).map((project, index) => (
+            <a 
+              href={project.link} 
+              class="bento-card group block animate-on-scroll" 
+              style={`animation-delay: ${index * 0.1}s`}
+              target="_blank" 
+              rel="noopener"
+            >
+              <div class="aspect-video rounded-2xl bg-gradient-to-br from-accent/20 to-accent-tertiary/20 mb-4 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>
+                <Zap size={48} class="text-accent/50 group-hover:scale-110 transition-transform" />
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-text-secondary mb-4" style="line-height: 1.6;">{project.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
 
-      <!-- Other Projects -->
-      <h2 class="text-2xl font-heading font-semibold mb-6">Other Projects</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        {projects.filter(p => !p.featured).map(project => (
-          <a href={project.link} class="card group block" target="_blank" rel="noopener">
-            <h3 class="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
-              {project.title}
-            </h3>
-            <p class="text-sm text-text-secondary mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <span class="tag text-xs">{tag}</span>
-              ))}
-            </div>
-          </a>
-        ))}
+        <!-- Other Projects -->
+        <h2 class="text-2xl font-bold mb-6 animate-on-scroll">Other Projects</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {projects.filter(p => !p.featured).map((project, index) => (
+            <a 
+              href={project.link} 
+              class="bento-card group block animate-on-scroll" 
+              style={`animation-delay: ${index * 0.1}s`}
+              target="_blank" 
+              rel="noopener"
+            >
+              <div class="flex items-center gap-2 mb-3">
+                <FolderOpen size={18} class="text-accent" />
+                <h3 class="text-lg font-semibold group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+              </div>
+              <p class="text-sm text-text-secondary mb-4" style="line-height: 1.6;">{project.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map(tag => (
+                  <span class="tag text-xs">{tag}</span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- GitHub Stats -->
-    <section class="container py-12">
-      <div class="card">
-        <h2 class="text-2xl font-heading font-semibold mb-6">GitHub Activity</h2>
-        <div class="flex gap-4 items-center">
-          <img 
-            src="https://github-readme-stats.vercel.app/api?username=All-Vice&show_icons=true&theme=transparent" 
-            alt="GitHub Stats"
-            class="rounded-lg"
-          />
+    <section class="section-py-sm pb-24">
+      <div class="container-main">
+        <div class="bento-card">
+          <div class="flex items-center gap-3 mb-6">
+            <Github size={24} class="text-accent" />
+            <h2 class="text-2xl font-bold">GitHub Activity</h2>
+          </div>
+          <div class="flex gap-4 items-center overflow-hidden rounded-xl">
+            <img 
+              src="https://github-readme-stats.vercel.app/api?username=All-Vice&show_icons=true&theme=transparent&hide_border=true&bg_color=0a0a0f" 
+              alt="GitHub Stats"
+              class="w-full max-w-md"
+            />
+          </div>
         </div>
       </div>
     </section>

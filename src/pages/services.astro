@@ -2,32 +2,40 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { Palette, Code, Search, Zap, Check, ArrowRight } from 'lucide-astro';
 
 const services = [
   {
     title: 'Web Design',
     description: 'Beautiful, conversion-focused designs that capture your brand essence',
-    icon: '🎨',
+    icon: Palette,
     features: ['UI Design', 'Wireframing', 'Prototyping', 'Design Systems'],
   },
   {
     title: 'Frontend Development',
     description: 'Clean, performant code using modern technologies',
-    icon: '💻',
+    icon: Code,
     features: ['React/Astro', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
   },
   {
     title: 'UX Consulting',
     description: 'Improve user experience and increase conversions',
-    icon: '🔍',
+    icon: Search,
     features: ['User Research', 'Usability Testing', 'Information Architecture', 'Journey Mapping'],
   },
   {
     title: 'Website Optimization',
     description: 'Make your existing website faster and more effective',
-    icon: '⚡',
+    icon: Zap,
     features: ['Performance Audit', 'SEO Optimization', 'Accessibility', 'Analytics Setup'],
   },
+];
+
+const process = [
+  { step: '01', title: 'Discover', description: 'We discuss your goals, audience, and vision' },
+  { step: '02', title: 'Design', description: 'I create mockups and prototypes for your feedback' },
+  { step: '03', title: 'Develop', description: 'Building your website with clean, maintainable code' },
+  { step: '04', title: 'Deploy', description: 'Launching your site and ensuring everything works' },
 ];
 ---
 
@@ -35,62 +43,66 @@ const services = [
   <Navigation />
   
   <main class="pt-24">
-    <section class="container py-12">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Services</h1>
-      <p class="text-xl text-text-secondary max-w-2xl mb-12">
-        I help businesses create beautiful, functional websites that drive results.
-      </p>
-      
-      <div class="grid md:grid-cols-2 gap-6">
-        {services.map(service => (
-          <div class="card hover:border-accent transition-colors">
-            <div class="text-4xl mb-4">{service.icon}</div>
-            <h2 class="text-2xl font-heading font-semibold mb-2">{service.title}</h2>
-            <p class="text-text-secondary mb-6">{service.description}</p>
-            <ul class="space-y-2">
-              {service.features.map(feature => (
-                <li class="flex items-center gap-2 text-sm">
-                  <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section class="section-py">
+      <div class="container-main">
+        <h1 class="hero-title mb-4 animate-on-scroll">
+          Services
+        </h1>
+        <p class="text-xl text-text-secondary max-w-2xl mb-12 animate-on-scroll stagger-2" style="line-height: 1.7;">
+          I help businesses create beautiful, functional websites that drive results.
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          {services.map((service, index) => (
+            <div class="bento-card animate-on-scroll group" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent-tertiary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <service.icon size={28} class="text-accent" />
+              </div>
+              <h2 class="text-2xl font-bold mb-2">{service.title}</h2>
+              <p class="text-text-secondary mb-6" style="line-height: 1.6;">{service.description}</p>
+              <ul class="space-y-2">
+                {service.features.map(feature => (
+                  <li class="flex items-center gap-2 text-sm text-text-secondary">
+                    <Check size={16} class="text-accent flex-shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- Process -->
-    <section class="container py-12">
-      <h2 class="text-2xl font-heading font-semibold mb-8">How I Work</h2>
-      <div class="grid md:grid-cols-4 gap-6">
-        {[
-          { step: '01', title: 'Discover', description: 'We discuss your goals, audience, and vision' },
-          { step: '02', title: 'Design', description: 'I create mockups and prototypes for your feedback' },
-          { step: '03', title: 'Develop', description: 'Building your website with clean, maintainable code' },
-          { step: '04', title: 'Deploy', description: 'Launching your site and ensuring everything works' },
-        ].map(phase => (
-          <div class="text-center">
-            <div class="text-4xl font-heading font-bold text-accent/30 mb-2">{phase.step}</div>
-            <h3 class="font-semibold mb-2">{phase.title}</h3>
-            <p class="text-sm text-text-secondary">{phase.description}</p>
-          </div>
-        ))}
+    <section class="section-py-sm">
+      <div class="container-main">
+        <h2 class="text-2xl font-bold mb-8 animate-on-scroll">How I Work</h2>
+        <div class="grid md:grid-cols-4 gap-6">
+          {process.map((phase, index) => (
+            <div class="text-center animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="text-5xl font-heading font-bold text-accent/20 mb-2">{phase.step}</div>
+              <h3 class="font-semibold text-lg mb-2">{phase.title}</h3>
+              <p class="text-sm text-text-secondary">{phase.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="container py-12">
-      <div class="card bg-gradient-to-br from-accent/10 to-accent-tertiary/10 border-accent/20 text-center">
-        <h2 class="text-2xl font-heading font-bold mb-4">Ready to Start a Project?</h2>
-        <p class="text-text-secondary mb-6 max-w-xl mx-auto">
-          Let's discuss your ideas and see how I can help bring your vision to life.
-        </p>
-        <a href="/contact" class="btn btn-primary">
-          Get In Touch
-        </a>
+    <section class="section-py-sm pb-24">
+      <div class="container-main">
+        <div class="bento-card text-center" style="background: linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(244,114,182,0.05) 100%); border-color: rgba(139,92,246,0.2);">
+          <h2 class="text-2xl font-bold mb-4">Ready to Start a Project?</h2>
+          <p class="text-text-secondary mb-8 max-w-xl mx-auto" style="line-height: 1.7;">
+            Let's discuss your ideas and see how I can help bring your vision to life.
+          </p>
+          <a href="/contact" class="btn-primary group inline-flex">
+            <span>Get In Touch</span>
+            <ArrowRight size={18} class="transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   </main>

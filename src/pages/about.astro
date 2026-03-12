@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { User, Target, Rocket, Sparkles, Calendar, ArrowRight } from 'lucide-astro';
 
 const timeline = [
   { year: '2024', title: 'Present', description: 'Freelance Web Designer & Developer' },
@@ -9,89 +10,123 @@ const timeline = [
   { year: '2020', title: 'Junior Developer', description: 'Started professional web development journey' },
   { year: '2019', title: 'First Website', description: 'Built first website - a portfolio for a friend' },
 ];
+
+const values = [
+  { 
+    title: 'Quality First', 
+    description: 'Every pixel matters. I obsess over details to deliver the best possible experience.',
+    icon: Target
+  },
+  { 
+    title: 'Performance', 
+    description: 'Fast websites delight users. Performance is not an afterthought, it\'s built in.',
+    icon: Rocket
+  },
+  { 
+    title: 'Simplicity', 
+    description: 'Great design is as little design as possible. Less is more.',
+    icon: Sparkles
+  },
+];
 ---
 
 <BaseLayout title="About | All-Vice">
   <Navigation />
   
   <main class="pt-24">
-    <section class="container py-12">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-8">About Me</h1>
-      
-      <div class="grid md:grid-cols-2 gap-12">
-        <div>
-          <div class="aspect-square max-w-md rounded-2xl bg-gradient-to-br from-accent/20 to-accent-tertiary/20 flex items-center justify-center mb-8">
-            <span class="text-8xl">👨‍💻</span>
-          </div>
+    <!-- Hero -->
+    <section class="section-py">
+      <div class="container-main">
+        <div class="max-w-3xl">
+          <h1 class="hero-title mb-6 animate-on-scroll">
+            About <span class="text-gradient">Me</span>
+          </h1>
+          <p class="text-xl text-text-secondary animate-on-scroll stagger-2" style="line-height: 1.7;">
+            I'm a passionate web designer and developer with over 5 years of experience 
+            creating beautiful, functional websites.
+          </p>
         </div>
-        
-        <div>
-          <h2 class="text-2xl font-heading font-semibold mb-4">My Story</h2>
-          <div class="space-y-4 text-text-secondary">
-            <p>
-              I'm a passionate web designer and developer with over 5 years of experience 
-              creating beautiful, functional websites. I specialize in modern design systems, 
-              user experience, and clean code.
-            </p>
-            <p>
-              My journey started when I built my first website for a friend's small business. 
-              I was hooked on the idea that good design could help businesses succeed.
-            </p>
-            <p>
-              Since then, I've worked with clients across various industries, from startups 
-              to established businesses, helping them establish their online presence.
-            </p>
-            <p>
-              When I'm not designing or coding, you'll find me exploring new web technologies, 
-              contributing to open source, or sharing knowledge through blog posts.
-            </p>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section-py-sm">
+      <div class="container-main">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <!-- Image -->
+          <div class="animate-on-scroll stagger-3">
+            <div class="aspect-square rounded-3xl bg-gradient-to-br from-accent/20 via-accent-tertiary/10 to-accent-secondary/20 flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent"></div>
+              <User size={120} class="text-accent/30" />
+            </div>
+          </div>
+          
+          <!-- Story -->
+          <div class="space-y-6">
+            <div class="animate-on-scroll stagger-4">
+              <h2 class="text-2xl font-bold mb-4">My Story</h2>
+              <div class="space-y-4 text-text-secondary" style="line-height: 1.8;">
+                <p>
+                  I'm a passionate web designer and developer with over 5 years of experience 
+                  creating beautiful, functional websites. I specialize in modern design systems, 
+                  user experience, and clean code.
+                </p>
+                <p>
+                  My journey started when I built my first website for a friend's small business. 
+                  I was hooked on the idea that good design could help businesses succeed.
+                </p>
+                <p>
+                  Since then, I've worked with clients across various industries, from startups 
+                  to established businesses, helping them establish their online presence.
+                </p>
+                <p>
+                  When I'm not designing or coding, you'll find me exploring new web technologies, 
+                  contributing to open source, or sharing knowledge through blog posts.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Timeline -->
-    <section class="container py-12">
-      <h2 class="text-2xl font-heading font-semibold mb-8">My Journey</h2>
-      <div class="space-y-8">
-        {timeline.map(item => (
-          <div class="flex gap-6">
-            <div class="w-24 flex-shrink-0">
-              <span class="text-accent font-mono font-semibold">{item.year}</span>
+    <section class="section-py-sm">
+      <div class="container-main">
+        <h2 class="text-2xl font-bold mb-8 animate-on-scroll">My Journey</h2>
+        <div class="max-w-2xl">
+          {timeline.map((item, index) => (
+            <div class="flex gap-6 animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="w-20 flex-shrink-0">
+                <span class="text-accent font-mono font-semibold">{item.year}</span>
+              </div>
+              <div class="flex-1 pb-8 border-l-2 border-border pl-6 relative">
+                <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent/20 border-2 border-accent"></div>
+                <h3 class="font-semibold text-lg mb-1">{item.title}</h3>
+                <p class="text-text-secondary">{item.description}</p>
+              </div>
             </div>
-            <div class="flex-1 pb-8 border-l-2 border-border pl-6">
-              <h3 class="font-semibold text-lg">{item.title}</h3>
-              <p class="text-text-secondary">{item.description}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- Values -->
-    <section class="container py-12">
-      <h2 class="text-2xl font-heading font-semibold mb-8">What I Believe</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <div class="text-3xl mb-4">🎯</div>
-          <h3 class="font-semibold mb-2">Quality First</h3>
-          <p class="text-text-secondary text-sm">
-            Every pixel matters. I obsess over details to deliver the best possible experience.
-          </p>
-        </div>
-        <div class="card">
-          <div class="text-3xl mb-4">🚀</div>
-          <h3 class="font-semibold mb-2">Performance</h3>
-          <p class="text-text-secondary text-sm">
-            Fast websites delight users. Performance is not an afterthought, it's built in.
-          </p>
-        </div>
-        <div class="card">
-          <div class="text-3xl mb-4">💡</div>
-          <h3 class="font-semibold mb-2">Simplicity</h3>
-          <p class="text-text-secondary text-sm">
-            Great design is as little design as possible. Less is more.
-          </p>
+    <section class="section-py-sm pb-24">
+      <div class="container-main">
+        <h2 class="text-2xl font-bold mb-8 animate-on-scroll">What I Believe</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {values.map((value, index) => (
+            <div class="bento-card animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                <value.icon size={24} class="text-accent" />
+              </div>
+              <h3 class="font-semibold text-lg mb-2">{value.title}</h3>
+              <p class="text-text-secondary text-sm" style="line-height: 1.6;">
+                {value.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
