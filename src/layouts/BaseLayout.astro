@@ -20,14 +20,24 @@ const { title, description = "Web designer crafting beautiful, functional websit
     <title>{title}</title>
   </head>
   <body style="background-color: #0a0a0f; color: #fafafa; min-height: 100vh; margin: 0; font-family: system-ui, -apple-system, sans-serif;">
-    <slot />
+    
+    <!-- Aurora Background - Fixed at body level so it's not clipped by section overflow:hidden -->
+    <div class="aurora-container" style="position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;">
+      <div class="aurora-blob aurora-blob-1"></div>
+      <div class="aurora-blob aurora-blob-2"></div>
+      <div class="aurora-blob aurora-blob-3"></div>
+    </div>
+    
+    <div style="position: relative; z-index: 1;">
+      <slot />
+    </div>
     
     <script>
-      // Scroll Animation Observer
+      // Scroll Animation Observer with immediate trigger for above-fold content
       const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -100px 0px',
-        threshold: 0.1
+        rootMargin: '0px',
+        threshold: 0
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -39,14 +49,28 @@ const { title, description = "Web designer crafting beautiful, functional websit
         });
       }, observerOptions);
 
+      // Observe all animate-on-scroll elements
       document.querySelectorAll('.animate-on-scroll').forEach((el) => {
         observer.observe(el);
       });
 
-      // Re-run on page navigation
+      // Also immediately add is-visible to elements already in viewport (above-fold)
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('is-visible');
+        }
+      });
+
+      // Re-run on page navigation (Astro View Transitions)
       document.addEventListener('astro:page-load', () => {
         document.querySelectorAll('.animate-on-scroll').forEach((el) => {
           observer.observe(el);
+          // Check immediately for elements in viewport
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('is-visible');
+          }
         });
       });
     </script>
