@@ -20,24 +20,28 @@ import {
   MessageCircle,
   Linkedin,
   Twitter,
-  Mail
+  Mail,
+  Eye,
+  Sparkles,
+  Heart,
+  ExternalLink
 } from 'lucide-astro';
 
 const skills = [
-  { name: 'Astro', icon: Rocket },
-  { name: 'React', icon: Code },
-  { name: 'TypeScript', icon: Code },
-  { name: 'Tailwind', icon: Layers },
-  { name: 'Node.js', icon: Server },
-  { name: 'GitHub', icon: Github },
-  { name: 'Figma', icon: Figma },
-  { name: 'CSS Grid', icon: Grid3X3 },
+  { name: 'Astro', icon: Rocket, color: 'accent' },
+  { name: 'React', icon: Code, color: 'cyan' },
+  { name: 'TypeScript', icon: Code, color: 'cyan' },
+  { name: 'Tailwind', icon: Layers, color: 'accent' },
+  { name: 'Node.js', icon: Server, color: 'pink' },
+  { name: 'GitHub', icon: Github, color: 'accent' },
+  { name: 'Figma', icon: Figma, color: 'pink' },
+  { name: 'CSS Grid', icon: Grid3X3, color: 'cyan' },
 ];
 
 const services = [
-  { title: 'Web Design', description: 'Beautiful, conversion-focused designs', icon: Palette },
-  { title: 'Frontend Dev', description: 'Clean, performant code', icon: Code },
-  { title: 'UI/UX', description: 'User-centered experiences', icon: Layers },
+  { title: 'Web Design', description: 'Beautiful, conversion-focused designs that capture your brand essence', icon: Palette, color: 'accent' },
+  { title: 'Frontend Dev', description: 'Clean, performant code using modern technologies', icon: Code, color: 'cyan' },
+  { title: 'UI/UX', description: 'User-centered experiences that delight', icon: Layers, color: 'pink' },
 ];
 
 const socialLinks = [
@@ -54,35 +58,35 @@ const socialLinks = [
     <!-- Hero Section -->
     <section class="section-py relative overflow-hidden">
       <!-- Animated gradient orbs -->
-      <div class="absolute top-20 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div class="absolute bottom-20 right-1/4 w-80 h-80 bg-accent-secondary/15 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+      <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-cyan/15 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
       
-      <div class="container-main">
-        <div class="max-w-4xl">
+      <div class="container-main relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
           <div class="animate-on-scroll">
-            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-accent/10 border border-accent/20 text-accent mb-6">
-              <Zap size={14} class="text-accent-secondary" />
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-accent/10 border border-accent/20 text-accent mb-8">
+              <Sparkles size={16} class="text-cyan" />
               Available for projects
             </span>
           </div>
           
-          <h1 class="hero-title mb-6 animate-on-scroll stagger-1">
+          <h1 class="hero-title mb-8 animate-on-scroll stagger-1" style="font-size: clamp(3rem, 8vw, 5.5rem);">
             Building websites<br />
             <span class="text-gradient-glow">that matter.</span>
           </h1>
           
-          <p class="text-xl text-text-secondary max-w-2xl mb-10 animate-on-scroll stagger-2" style="line-height: 1.7;">
+          <p class="text-xl text-text-secondary max-w-2xl mx-auto mb-12 animate-on-scroll stagger-2" style="font-size: 1.25rem; line-height: 1.8;">
             Web designer & developer crafting beautiful, functional websites. 
             Specialized in modern design systems, bento grids, and creating memorable user experiences.
           </p>
           
-          <div class="flex flex-wrap gap-4 animate-on-scroll stagger-3">
-            <a href="/portfolio" class="btn-primary group">
+          <div class="flex flex-wrap justify-center gap-4 animate-on-scroll stagger-3">
+            <a href="/portfolio" class="btn-primary group text-base px-8 py-4">
               <span>View My Work</span>
-              <ArrowRight size={18} class="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={20} class="transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="/contact" class="btn-secondary">
-              <MessageCircle size={18} />
+            <a href="/contact" class="btn-secondary text-base px-8 py-4">
+              <MessageCircle size={20} />
               <span>Get In Touch</span>
             </a>
           </div>
@@ -91,64 +95,67 @@ const socialLinks = [
     </section>
 
     <!-- Bento Grid -->
-    <section class="container-main pb-24">
+    <section class="container-main pb-32">
       <div class="bento-grid">
         
-        <!-- Bio Card -->
-        <div class="bento-lg bento-card animate-on-scroll stagger-2">
-          <div class="flex items-start justify-between mb-4">
-            <h2 class="text-2xl font-bold">About Me</h2>
-            <div class="icon-glass">
-              <Users size={20} />
+        <!-- Bio Card - Large prominent card -->
+        <div class="bento-lg bento-card bento-card-accent animate-on-scroll stagger-2">
+          <div class="bento-card-header">
+            <div class="bento-card-icon">
+              <Users size={24} class="text-accent" />
             </div>
+            <span class="text-xs font-medium text-text-muted uppercase tracking-widest">About</span>
           </div>
-          <p class="text-text-secondary mb-4" style="line-height: 1.7;">
-            I'm a passionate web designer & developer who loves creating beautiful, 
-            functional websites. I specialize in modern design systems and clean code.
-          </p>
-          <p class="text-text-secondary" style="line-height: 1.7;">
-            When I'm not designing, you'll find me exploring new web technologies 
-            and contributing to open source projects.
-          </p>
+          <h2 class="bento-card-title text-2xl">About Me</h2>
+          <div class="bento-card-content">
+            <p class="mb-4">
+              I'm a passionate web designer & developer who loves creating beautiful, 
+              functional websites. I specialize in modern design systems and clean code.
+            </p>
+            <p>
+              When I'm not designing, you'll find me exploring new web technologies 
+              and contributing to open source projects.
+            </p>
+          </div>
         </div>
 
         <!-- Stats Card -->
-        <div class="bento-md bento-card animate-on-scroll stagger-3">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="icon-glass">
-              <TrendingUp size={20} />
+        <div class="bento-md bento-card bento-card-cyan animate-on-scroll stagger-3">
+          <div class="bento-card-header">
+            <div class="bento-card-icon" style="background: linear-gradient(135deg, rgba(34,211,238,0.2) 0%, rgba(34,211,238,0.1) 100%); border-color: rgba(34,211,238,0.2);">
+              <TrendingUp size={24} class="text-cyan" />
             </div>
-            <h3 class="text-lg font-semibold">Quick Stats</h3>
+            <span class="text-xs font-medium text-text-muted uppercase tracking-widest">Stats</span>
           </div>
-          <div class="grid grid-cols-3 gap-4">
-            <div class="text-center">
-              <div class="stat-number">5+</div>
-              <div class="text-sm text-text-muted mt-1">Years</div>
+          <div class="grid grid-cols-3 gap-4 py-4">
+            <div class="bento-stat">
+              <div class="bento-stat-value">5+</div>
+              <div class="bento-stat-label">Years</div>
             </div>
-            <div class="text-center">
-              <div class="stat-number">50+</div>
-              <div class="text-sm text-text-muted mt-1">Projects</div>
+            <div class="bento-stat">
+              <div class="bento-stat-value">50+</div>
+              <div class="bento-stat-label">Projects</div>
             </div>
-            <div class="text-center">
-              <div class="stat-number">30+</div>
-              <div class="text-sm text-text-muted mt-1">Clients</div>
+            <div class="bento-stat">
+              <div class="bento-stat-value">30+</div>
+              <div class="bento-stat-label">Clients</div>
             </div>
           </div>
         </div>
 
         <!-- Services Card -->
-        <div class="bento-md bento-card animate-on-scroll stagger-4">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="icon-glass">
-              <Briefcase size={20} />
+        <div class="bento-md bento-card bento-card-pink animate-on-scroll stagger-4">
+          <div class="bento-card-header">
+            <div class="bento-card-icon" style="background: linear-gradient(135deg, rgba(244,114,182,0.2) 0%, rgba(244,114,182,0.1) 100%); border-color: rgba(244,114,182,0.2);">
+              <Briefcase size={24} class="text-pink" />
             </div>
-            <h3 class="text-lg font-semibold">Services</h3>
+            <span class="text-xs font-medium text-text-muted uppercase tracking-widest">Services</span>
           </div>
-          <div class="space-y-3">
+          <div class="space-y-4">
             {services.map(service => (
-              <div class="p-4 rounded-2xl bg-white/5 border border-border/50 hover:border-accent/30 transition-colors">
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-all">
                 <div class="flex items-center gap-3">
-                  <service.icon size={18} class="text-accent" />
+                  <service.icon size={18} class="text-accent flex-shrink-0" />
                   <div>
                     <h4 class="font-semibold text-sm">{service.title}</h4>
                     <p class="text-xs text-text-muted">{service.description}</p>
@@ -161,12 +168,12 @@ const socialLinks = [
 
         <!-- Skills Card -->
         <div class="bento-sm bento-card animate-on-scroll stagger-4">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-glass">
-              <Layers size={20} />
+          <div class="bento-card-header">
+            <div class="bento-card-icon">
+              <Layers size={24} class="text-accent" />
             </div>
-            <h3 class="text-lg font-semibold">Tech Stack</h3>
           </div>
+          <h3 class="bento-card-title text-lg mb-4">Tech Stack</h3>
           <div class="flex flex-wrap gap-2">
             {skills.map(skill => (
               <span class="tag">
@@ -178,69 +185,74 @@ const socialLinks = [
         </div>
 
         <!-- Featured Project -->
-        <div class="bento-md bento-card group animate-on-scroll stagger-5" style="cursor: pointer;">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold">Featured Project</h3>
-            <ArrowRight size={20} class="transition-transform group-hover:translate-x-1 text-text-muted" />
+        <div class="bento-md bento-card bento-card-accent group animate-on-scroll stagger-5" style="cursor: pointer;">
+          <div class="bento-card-header">
+            <div class="bento-card-icon">
+              <Zap size={24} class="text-accent" />
+            </div>
+            <ExternalLink size={18} class="text-text-muted" />
           </div>
-          <div class="aspect-video rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-accent/20 to-accent-tertiary/20 group-hover:from-accent/30 group-hover:to-accent-tertiary/30 transition-all">
-            <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent"></div>
-            <Zap size={48} class="text-accent relative z-10" />
+          <div class="aspect-video rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-accent/20 to-pink/20 group-hover:from-accent/30 group-hover:to-pink/30 transition-all">
+            <div class="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent"></div>
+            <div class="relative z-10 w-20 h-20 rounded-2xl bg-accent/20 flex items-center justify-center">
+              <Zap size={36} class="text-accent" />
+            </div>
           </div>
-          <h4 class="font-semibold mb-1 group-hover:text-accent transition-colors">
+          <h4 class="bento-card-title group-hover:text-accent transition-colors text-lg">
             Omni-Server Frame
           </h4>
-          <p class="text-sm text-text-muted">
+          <p class="text-sm text-text-muted mt-2">
             AI-powered GitHub development platform
           </p>
         </div>
 
         <!-- Latest Post -->
-        <div class="bento-sm bento-card group animate-on-scroll stagger-5" style="cursor: pointer;">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold">Latest Post</h3>
-            <ArrowRight size={20} class="transition-transform group-hover:translate-x-1 text-text-muted" />
+        <div class="bento-sm bento-card bento-card-cyan group animate-on-scroll stagger-5" style="cursor: pointer;">
+          <div class="bento-card-header">
+            <div class="bento-card-icon" style="background: linear-gradient(135deg, rgba(34,211,238,0.2) 0%, rgba(34,211,238,0.1) 100%); border-color: rgba(34,211,238,0.2);">
+              <FileText size={24} class="text-cyan" />
+            </div>
+            <ArrowRight size={18} class="text-text-muted transition-transform group-hover:translate-x-1" />
           </div>
-          <div class="aspect-square rounded-2xl mb-4 flex items-center justify-center bg-gradient-to-br from-accent-secondary/10 to-accent/10 group-hover:from-accent-secondary/20 group-hover:to-accent/20 transition-all">
-            <FileText size={32} class="text-accent-secondary" />
-          </div>
-          <h4 class="font-semibold mb-1 group-hover:text-accent transition-colors text-sm">
+          <h4 class="bento-card-title text-base mb-2 group-hover:text-cyan transition-colors">
             The Complete Guide to Bento Grids
           </h4>
           <p class="text-xs text-text-muted">Coming soon...</p>
         </div>
 
         <!-- CTA Card -->
-        <div class="bento-md bento-card animate-on-scroll stagger-6" style="background: linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(244,114,182,0.05) 100%); border-color: rgba(139,92,246,0.2);">
-          <div class="flex items-center gap-3 mb-4">
-            <h3 class="text-lg font-semibold">Let's Work Together</h3>
+        <div class="bento-md bento-card bento-card-accent animate-on-scroll stagger-6" style="background: linear-gradient(145deg, rgba(139,92,246,0.2) 0%, rgba(20,20,30,0.95) 100%); border-color: rgba(139,92,246,0.3);">
+          <div class="text-center py-6">
+            <h3 class="text-2xl font-bold mb-4">Let's Work Together</h3>
+            <p class="text-text-secondary mb-8 max-w-md mx-auto" style="line-height: 1.7;">
+              Have a project in mind? I'd love to hear about it. Let's create something amazing together.
+            </p>
+            <a href="/contact" class="btn-primary group inline-flex text-base px-8 py-4">
+              <span>Start a Project</span>
+              <ArrowRight size={20} class="transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
-          <p class="text-text-secondary mb-6">
-            Have a project in mind? I'd love to hear about it.
-          </p>
-          <a href="/contact" class="btn-primary group">
-            <span>Start a Project</span>
-            <ArrowRight size={18} class="transition-transform group-hover:translate-x-1" />
-          </a>
         </div>
 
         <!-- Social Connect -->
         <div class="bento-sm bento-card animate-on-scroll stagger-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="icon-glass">
-              <MessageCircle size={20} />
+          <div class="bento-card-header">
+            <div class="bento-card-icon">
+              <MessageCircle size={24} class="text-accent" />
             </div>
-            <h3 class="text-lg font-semibold">Connect</h3>
           </div>
-          <div class="space-y-2">
+          <h3 class="bento-card-title text-lg mb-4">Connect</h3>
+          <div class="space-y-3">
             {socialLinks.map(link => (
               <a 
                 href={link.href}
-                class="flex items-center gap-3 p-3 rounded-xl transition-all hover:bg-white/5 group"
+                class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/15 transition-all group"
               >
-                <link.icon size={18} />
-                <span class="text-sm font-medium">{link.label}</span>
-                <ArrowRight size={16} class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-text-muted" />
+                <span class="flex items-center gap-3">
+                  <link.icon size={18} />
+                  <span class="text-sm font-medium">{link.label}</span>
+                </span>
+                <ArrowRight size={16} class="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
           </div>
