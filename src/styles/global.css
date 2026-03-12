@@ -917,16 +917,18 @@ a {
   background: #0a0a0f;
   /* Static gradient as fallback */
   background-image: 
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.15), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(34, 211, 238, 0.1), transparent 50%),
-    radial-gradient(ellipse 50% 30% at 60% 80%, rgba(244, 114, 182, 0.1), transparent 50%);
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(139, 92, 246, 0.3), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(34, 211, 238, 0.2), transparent 50%),
+    radial-gradient(ellipse 50% 30% at 60% 80%, rgba(244, 114, 182, 0.2), transparent 50%);
 }
 
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.8;
   will-change: transform;
+  filter: blur(60px);
+  mix-blend-mode: screen;
 }
 
 .aurora-blob-1 {
@@ -959,18 +961,18 @@ a {
 }
 
 @keyframes aurora-float-1 {
- 0%, 100% { transform: translate(0, 0); }
- 50% { transform: translate(50px, 30px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(50px, 30px, 0); }
 }
 
 @keyframes aurora-float-2 {
- 0%, 100% { transform: translate(0, 0); }
- 50% { transform: translate(-40px, 20px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-40px, 20px, 0); }
 }
 
 @keyframes aurora-float-3 {
- 0%, 100% { transform: translate(0, 0); }
- 50% { transform: translate(30px, -30px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(30px, -30px, 0); }
 }
 
 /* ============================================
